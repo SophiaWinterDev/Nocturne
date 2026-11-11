@@ -12,8 +12,8 @@ function getHTMLForBook(index) {
         <hr />
         <div class="book-footer">
             <div class="likes-wrapper">
-                <button id="likeButton-${index}" class="like-button" onclick="likeBook(${index})"></button>
-                <p class="book-likes">${currentBooks[index].likes}</p>
+                <button id="likeButton-${index}" class="like-button" onclick="toggleLikeBook(${index})"></button>
+                <p id="likeCounter-${index}" class="book-likes">${currentBooks[index].likes}</p>
             </div>
             <div class="comments-wrapper">
                 <button class="comments-button" onclick="toggleCommentSection(${index})"></button>

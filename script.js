@@ -361,6 +361,7 @@ function renderBooks(category) {
     }
     for (let index = 0; index < currentBooks.length; index++) {
         document.getElementById("bookSection").innerHTML += getHTMLForBook(index);
+        checkIfLiked(index);
     }
 }
 
@@ -375,8 +376,24 @@ function addComment(index) {
     commentInputRef.value = "";
 }
 
-function likeBook(index) {
+function checkIfLiked(index) {
+    if (currentBooks[index].liked === true) {
+        document.getElementById(`likeButton-${index}`).classList.add('liked-button');
+    }
+}
+
+function toggleLikeBook(index) {
     document.getElementById(`likeButton-${index}`).classList.toggle('liked-button');
+    countLikes(index);
+}
+
+function countLikes(index) {
+    if (document.getElementById(`likeButton-${index}`).classList.contains('liked-button')) {
+        currentBooks[index].likes = currentBooks[index].likes +1;
+    } else {
+        currentBooks[index].likes = currentBooks[index].likes -1;
+    }
+    document.getElementById(`likeCounter-${index}`).innerHTML = currentBooks[index].likes;
 }
 
 function setFavorite(index) {
