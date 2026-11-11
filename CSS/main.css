@@ -3,6 +3,7 @@ header,
 main,
 .category-section,
 .book,
+.comment-section,
 footer {
     display: flex;
     flex-direction: column;
@@ -81,10 +82,15 @@ main {
 
 .category-button {
     background-color: var(--secondary-bg-color);
-    border: 1px solid rgb(75, 38, 47);
+    border: 1px solid var(--highlight-bg-color);
     border-radius: 50px;
     padding: 10px 20px;
-    color: var(--navigation-color);
+    color: var(--highlight-color);
+    font-weight: 600;
+}
+
+.category-button:hover {
+    outline: 2px solid rgb(126, 38, 60);
 }
 
 .book-section {
@@ -97,11 +103,12 @@ main {
 
 .book {
     background-color: var(--secondary-bg-color);
-    border: 1px solid rgb(75, 38, 47);
+    border: 1px solid var(--highlight-bg-color);
     border-radius: 10px;
     padding: 10px;
     width: 350px;
     text-align: center;
+    position: relative;
 
     justify-content: center;
     align-items: center;
@@ -120,7 +127,7 @@ main {
 }
 
 .book hr {
-    border: 1px solid rgb(75, 38, 47);
+    border: 1px solid var(--highlight-bg-color);
     width: 100%;
 }
 
@@ -132,16 +139,87 @@ main {
 }
 
 .likes-wrapper,
-.comments-button {
+.comments-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
 }
 
-.likes-wrapper img,
-.comments-button > img {
-    width: 20px;
+.like-button,
+.comments-button,
+.favorite-button {
+    width: 28px;
+    height: 28px;
+}
+
+.favorite-button {
+    background-image: url(../assets/icon/favorite-icon.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.favorite-button:hover {
+    background-image: url(../assets/icon/favorite-icon-hover.png);
+}
+
+.like-button {
+    background-image: url(../assets/icon/like-icon.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.like-button:hover {
+    background-image: url(../assets/icon/like-icon-hover.png);
+}
+
+.comments-button {
+    background-image: url(../assets/icon/comments-icon.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.comments-button:hover {
+    background-image: url(../assets/icon/comments-icon-hover.png);
+}
+
+.comment-section {
+    gap: 10px;
+    text-align: start;
+}
+
+.input-wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.input-wrapper > button:hover {
+    scale: 1.5;
+}
+
+input {
+    width: 90%;
+    border: 1px solid var(--highlight-bg-color);
+    background-color: rgb(56, 34, 45);
+    border-radius: 5px;
+    color: var(--main-text-color);
+    caret-color: var(--main-text-color);
+    padding: 8px 10px;
+}
+
+input::placeholder {
+    color: var(--secondary-text-color);
+}
+
+input:focus {
+    outline: 1px solid rgb(126, 38, 60);
 }
 
 footer {
