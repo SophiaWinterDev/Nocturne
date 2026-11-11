@@ -3,10 +3,16 @@ header,
 main,
 .category-section,
 .book,
+.book-content,
 .comment-section,
+.comments,
 footer {
     display: flex;
     flex-direction: column;
+}
+
+.d-none {
+    display: none;
 }
 
 body {
@@ -93,6 +99,11 @@ main {
     outline: 2px solid rgb(126, 38, 60);
 }
 
+.active-button {
+    outline: 2px solid rgb(126, 38, 60);
+    box-shadow: 0px 0px 20px rgb(126, 38, 60, 0.5) inset;
+}
+
 .book-section {
     display: flex;
     flex-wrap: wrap;
@@ -118,6 +129,13 @@ main {
 .book > img {
     width: 100%;
     border-radius: 10px;
+}
+
+.book-content {
+    width: 100%;
+    min-height: 160px;
+    gap: 10px;
+    text-align: start;
 }
 
 .book-author,
@@ -167,6 +185,10 @@ main {
     background-image: url(../assets/icon/favorite-icon-hover.png);
 }
 
+.favored-button {
+    background-image: url(../assets/icon/favored-icon.png);
+}
+
 .like-button {
     background-image: url(../assets/icon/like-icon.png);
     background-repeat: no-repeat;
@@ -176,6 +198,10 @@ main {
 
 .like-button:hover {
     background-image: url(../assets/icon/like-icon-hover.png);
+}
+
+.liked-button {
+    background-image: url(../assets/icon/liked-icon.png);
 }
 
 .comments-button {
@@ -192,6 +218,12 @@ main {
 .comment-section {
     gap: 10px;
     text-align: start;
+    width: 100%;
+}
+
+.comments {
+    gap: 10px;
+    color: var(--secondary-text-color);
 }
 
 .input-wrapper {

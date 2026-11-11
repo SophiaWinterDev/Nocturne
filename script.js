@@ -344,3 +344,54 @@ let books = [
         ],
     },
 ];
+
+let currentBooks = [];
+
+function init() {
+    renderBooks('all');
+}
+
+function renderBooks(category) {
+    document.getElementById("bookSection").innerHTML = "";
+    currentBooks = [];
+    for (let index = 0; index < books.length; index++) {
+        if (category === 'all' || books[index].genre === category) {
+            currentBooks.push(books[index]);
+        } 
+    }
+    for (let index = 0; index < currentBooks.length; index++) {
+        document.getElementById("bookSection").innerHTML += getHTMLForBook(index);
+    }
+}
+
+function toggleCommentSection(index) {
+    document.getElementById(`commentSection-${index}`).classList.toggle('d-none');
+}
+
+function addComment(index) {
+    let commentInputRef = document.getElementById(`commentInput-${index}`);
+    let commentsWrapperRef = document.getElementById(`commentsWrapper-${index}`);
+    commentsWrapperRef.innerHTML += `<p>Guest: ${commentInputRef.value}</p>`;
+    commentInputRef.value = "";
+}
+
+function likeBook(index) {
+    document.getElementById(`likeButton-${index}`).classList.toggle('liked-button');
+}
+
+function setFavorite(index) {
+    document.getElementById(`favoriteButton-${index}`).classList.toggle('favored-button');
+}
+
+function chooseCategory(clickedButton, category) {
+    document.getElementById("categoryFavorites").classList.remove('active-button');
+    document.getElementById("categoryAll").classList.remove('active-button');
+    document.getElementById("categoryRomantasy").classList.remove('active-button');
+    document.getElementById("categoryDarkRomance").classList.remove('active-button');
+    document.getElementById("categoryDarkFantasy").classList.remove('active-button');
+    document.getElementById("categoryGothicFantasy").classList.remove('active-button');
+    document.getElementById("categoryUrbanFantasy").classList.remove('active-button');
+
+    clickedButton.classList.add('active-button');
+    renderBooks(category);
+}

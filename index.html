@@ -10,15 +10,15 @@
             type="image/x-icon"
         />
 
-        <script src="./JS/templates.js"></script>
-        <script src="./script.js"></script>
+        <script defer src="./JS/templates.js"></script>
+        <script defer src="./script.js"></script>
 
         <link rel="stylesheet" href="./CSS/fonts.css" />
         <link rel="stylesheet" href="./CSS/variables.css" />
         <link rel="stylesheet" href="./style.css" />
         <link rel="stylesheet" href="./CSS/main.css" />
     </head>
-    <body>
+    <body onload="init()">
         <header>
             <h1>Nocturne</h1>
             <span
@@ -31,103 +31,16 @@
             <section class="category-section">
                 <p>The Collection · 15 Books</p>
                 <div class="category-button-wrapper">
-                    <button class="category-button">All Books</button>
-                    <button class="category-button">Romantasy</button>
-                    <button class="category-button">Dark Romance</button>
-                    <button class="category-button">Dark Fantasy</button>
-                    <button class="category-button">Gothic Fantasy</button>
-                    <button class="category-button">Urban Fantasy</button>
+                    <button id="categoryFavorites" class="category-button" onclick="chooseCategory(this, 'favorites')">Favorites</button>
+                    <button id="categoryAll" class="category-button active-button" onclick="chooseCategory(this, 'all')">All Books</button>
+                    <button id="categoryRomantasy" class="category-button" onclick="chooseCategory(this, 'Romantasy')">Romantasy</button>
+                    <button id="categoryDarkRomance" class="category-button" onclick="chooseCategory(this, 'Dark Romance')">Dark Romance</button>
+                    <button id="categoryDarkFantasy" class="category-button" onclick="chooseCategory(this, 'Dark Fantasy')">Dark Fantasy</button>
+                    <button id="categoryGothicFantasy" class="category-button" onclick="chooseCategory(this, 'Gothic Fantasy')">Gothic Fantasy</button>
+                    <button id="categoryUrbanFantasy" class="category-button" onclick="chooseCategory(this, 'Urban Fantasy')">Urban Fantasy</button>
                 </div>
             </section>
-            <section class="book-section">
-                <div class="book">
-                    <button class="favorite-button"></button>
-                    <img src="./assets/img/book-cover.jpg" alt="Book Cover" />
-                    <p class="book-genre">Romantasy · 2026</p>
-                    <h2>The Serpent and the Wings of Night</h2>
-                    <p class="book-author">Carissa Broadbent</p>
-                    <h3 class="book-price">24,00 €</h3>
-                    <hr />
-                    <div class="book-footer">
-                        <div class="likes-wrapper">
-                            <button class="like-button"></button>
-                            <p class="book-likes">1234</p>
-                        </div>
-                        <div class="comments-wrapper">
-                            <button class="comments-button"></button>
-                            <p class="book-comments">67</p>
-                        </div>
-                    </div>
-                    <section class="comment-section">
-                        <hr />
-                        <p>Comments:</p>
-                        <p>User: Wow, im just a test comment, its amazing!</p>
-                        <p>User2: Wow, im just another test comment, its amazing!</p>
-                        <div class="input-wrapper">
-                            <input type="text" placeholder="Write a comment...">
-                            <button>➤</button>
-                        </div>
-                    </section>
-                </div>
-                <div class="book">
-                    <button class="favorite-button"></button>
-                    <img src="./assets/img/book-cover.jpg" alt="Book Cover" />
-                    <p class="book-genre">Romantasy · 2026</p>
-                    <h2>The Serpent and the Wings of Night</h2>
-                    <p class="book-author">Carissa Broadbent</p>
-                    <h3 class="book-price">24,00 €</h3>
-                    <hr />
-                    <div class="book-footer">
-                        <div class="likes-wrapper">
-                            <button class="like-button"></button>
-                            <p class="book-likes">1234</p>
-                        </div>
-                        <div class="comments-wrapper">
-                            <button class="comments-button"></button>
-                            <p class="book-comments">67</p>
-                        </div>
-                    </div>
-                    <section class="comment-section">
-                        <hr />
-                        <p>Comments:</p>
-                        <p>User: Wow, im just a test comment, its amazing!</p>
-                        <p>User2: Wow, im just another test comment, its amazing!</p>
-                        <div class="input-wrapper">
-                            <input type="text" placeholder="Write a comment...">
-                            <button>➤</button>
-                        </div>
-                    </section>
-                </div>
-                <div class="book">
-                    <button class="favorite-button"></button>
-                    <img src="./assets/img/book-cover.jpg" alt="Book Cover" />
-                    <p class="book-genre">Romantasy · 2026</p>
-                    <h2>The Serpent and the Wings of Night</h2>
-                    <p class="book-author">Carissa Broadbent</p>
-                    <h3 class="book-price">24,00 €</h3>
-                    <hr />
-                    <div class="book-footer">
-                        <div class="likes-wrapper">
-                            <button class="like-button"></button>
-                            <p class="book-likes">1234</p>
-                        </div>
-                        <div class="comments-wrapper">
-                            <button class="comments-button"></button>
-                            <p class="book-comments">67</p>
-                        </div>
-                    </div>
-                    <section class="comment-section">
-                        <hr />
-                        <p>Comments:</p>
-                        <p>User: Wow, im just a test comment, its amazing!</p>
-                        <p>User2: Wow, im just another test comment, its amazing!</p>
-                        <div class="input-wrapper">
-                            <input type="text" placeholder="Write a comment...">
-                            <button>➤</button>
-                        </div>
-                    </section>
-                </div>
-            </section>
+            <section id="bookSection" class="book-section"></section>
         </main>
         <hr />
         <footer>
