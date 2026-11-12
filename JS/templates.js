@@ -1,7 +1,7 @@
 function getHTMLForBook(index) {
     return `
     <li class="book">
-        <button id="favoriteButton-${index}" class="favorite-button" onclick="setFavorite(${index})"></button>
+        <button id="favoriteButton-${index}" class="favorite-button" onclick="setFavorite(${index}, 'favorites')"></button>
         <img src="./assets/img/book-cover.jpg" alt="Book Cover" />
         <div class="book-content">
             <p class="book-genre">${currentBooks[index].genre} · ${currentBooks[index].publishedYear}</p>

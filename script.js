@@ -4,6 +4,7 @@ let books = [
         "author": "H. M. Wolfe",
         "likes": 1842,
         "liked": true,
+        "isFavorite": false,
         "price": 24.0,
         "publishedYear": 2026,
         "genre": "Dark Romance",
@@ -30,6 +31,7 @@ let books = [
         "author": "Sonia Tagliareini",
         "likes": 1265,
         "liked": true,
+        "isFavorite": false,
         "price": 24.0,
         "publishedYear": 2026,
         "genre": "Dark Fantasy",
@@ -51,6 +53,7 @@ let books = [
         "author": "Melanie Lan",
         "likes": 987,
         "liked": false,
+        "isFavorite": false,
         "price": 22.0,
         "publishedYear": 2026,
         "genre": "Urban Fantasy",
@@ -72,6 +75,7 @@ let books = [
         "author": "SenLinYu",
         "likes": 3256,
         "liked": true,
+        "isFavorite": false,
         "price": 34.99,
         "publishedYear": 2025,
         "genre": "Dark Fantasy",
@@ -103,6 +107,7 @@ let books = [
         "author": "Sitara Snow & Kristin Glimmer",
         "likes": 1128,
         "liked": false,
+        "isFavorite": false,
         "price": 18.99,
         "publishedYear": 2026,
         "genre": "Dark Romance",
@@ -124,6 +129,7 @@ let books = [
         "author": "Charlotte Buckley",
         "likes": 1453,
         "liked": true,
+        "isFavorite": false,
         "price": 24.0,
         "publishedYear": 2026,
         "genre": "Gothic Fantasy",
@@ -145,6 +151,7 @@ let books = [
         "author": "Carissa Broadbent",
         "likes": 2874,
         "liked": false,
+        "isFavorite": false,
         "price": 22.0,
         "publishedYear": 2024,
         "genre": "Romantasy",
@@ -171,6 +178,7 @@ let books = [
         "author": "Carissa Broadbent",
         "likes": 2546,
         "liked": false,
+        "isFavorite": false,
         "price": 22.0,
         "publishedYear": 2024,
         "genre": "Romantasy",
@@ -197,6 +205,7 @@ let books = [
         "author": "Carissa Broadbent",
         "likes": 2168,
         "liked": true,
+        "isFavorite": false,
         "price": 22.0,
         "publishedYear": 2025,
         "genre": "Romantasy",
@@ -218,6 +227,7 @@ let books = [
         "author": "Carissa Broadbent",
         "likes": 1987,
         "liked": false,
+        "isFavorite": false,
         "price": 22.0,
         "publishedYear": 2025,
         "genre": "Romantasy",
@@ -228,6 +238,7 @@ let books = [
         "author": "Carissa Broadbent",
         "likes": 1745,
         "liked": true,
+        "isFavorite": false,
         "price": 22.0,
         "publishedYear": 2026,
         "genre": "Romantasy",
@@ -249,6 +260,7 @@ let books = [
         "author": "Lisa Kismet",
         "likes": 1326,
         "liked": false,
+        "isFavorite": false,
         "price": 17.99,
         "publishedYear": 2026,
         "genre": "Dark Romance",
@@ -270,6 +282,7 @@ let books = [
         "author": "Rina Kent",
         "likes": 3421,
         "liked": true,
+        "isFavorite": false,
         "price": 10.89,
         "publishedYear": 2024,
         "genre": "Dark Romance",
@@ -296,6 +309,7 @@ let books = [
         "author": "Kaylie Smith",
         "likes": 2384,
         "liked": false,
+        "isFavorite": false,
         "price": 17.0,
         "publishedYear": 2025,
         "genre": "Gothic Fantasy",
@@ -322,6 +336,7 @@ let books = [
         "author": "Keri Lake",
         "likes": 1956,
         "liked": false,
+        "isFavorite": false,
         "price": 18.0,
         "publishedYear": 2026,
         "genre": "Dark Fantasy",
@@ -346,7 +361,7 @@ let books = [
 ];
 
 let currentBooks = [];
-const BOOK_SEKTION_REF = document.getElementById("bookSection");
+const BOOK_SECTION_REF = document.getElementById("bookSection");
 
 function init() {
     renderBooks("all");
@@ -359,7 +374,7 @@ function showBookAmount() {
 }
 
 function renderBooks(category) {
-    BOOK_SEKTION_REF.innerHTML = "";
+    BOOK_SECTION_REF.innerHTML = "";
     currentBooks = [];
     pushBooksToArray(category);
     pushBooksToHTML();
@@ -368,7 +383,7 @@ function renderBooks(category) {
 
 function pushBooksToArray(category) {
     for (let index = 0; index < books.length; index++) {
-        if (category === "all" || books[index].genre === category) {
+        if (category === "all" || books[index].genre === category || (category === "favorites" && books[index].isFavorite)) {
             currentBooks.push(books[index]);
         }
     }
@@ -376,7 +391,10 @@ function pushBooksToArray(category) {
 
 function pushBooksToHTML() {
     for (let index = 0; index < currentBooks.length; index++) {
-        BOOK_SEKTION_REF.innerHTML += getHTMLForBook(index);
+        BOOK_SECTION_REF.innerHTML += getHTMLForBook(index);
+        if (currentBooks[index].isFavorite) {
+            document.getElementById(`favoriteButton-${index}`).classList.add("favored-button");
+        }
         checkIfLiked(index);
         renderExistingComments(index);
     }
@@ -424,7 +442,7 @@ function checkIfLiked(index) {
 }
 
 function toggleLikeBook(index) {
-    document
+    currentBooks[index].liked = document
         .getElementById(`likeButton-${index}`)
         .classList.toggle("liked-button");
     countLikes(index);
@@ -445,32 +463,21 @@ function countLikes(index) {
 }
 
 function setFavorite(index) {
-    document
-        .getElementById(`favoriteButton-${index}`)
-        .classList.toggle("favored-button");
+    const FAVORITE_BUTTON_REF = document.getElementById(`favoriteButton-${index}`);
+    currentBooks[index].isFavorite = !currentBooks[index].isFavorite;
+    if (currentBooks[index].isFavorite === true) {
+        FAVORITE_BUTTON_REF.classList.add("favored-button");
+    } else {
+        FAVORITE_BUTTON_REF.classList.remove("favored-button");
+    }
+    if (document.querySelector(".active-button").getAttribute("onclick").includes("favorites")) {
+            renderBooks("favorites");}
 }
 
 function chooseCategory(clickedButton, category) {
-    document
-        .getElementById("categoryFavorites")
-        .classList.remove("active-button");
-    document.getElementById("categoryAll").classList.remove("active-button");
-    document
-        .getElementById("categoryRomantasy")
-        .classList.remove("active-button");
-    document
-        .getElementById("categoryDarkRomance")
-        .classList.remove("active-button");
-    document
-        .getElementById("categoryDarkFantasy")
-        .classList.remove("active-button");
-    document
-        .getElementById("categoryGothicFantasy")
-        .classList.remove("active-button");
-    document
-        .getElementById("categoryUrbanFantasy")
-        .classList.remove("active-button");
-
+    document.querySelectorAll(".category-button").forEach((button) => {
+        button.classList.remove("active-button");
+    });
     clickedButton.classList.add("active-button");
     renderBooks(category);
 }
