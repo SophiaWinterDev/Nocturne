@@ -364,13 +364,13 @@ let currentBooks = [];
 const BOOK_SECTION_REF = document.getElementById("bookSection");
 
 function init() {
+    getBooksFromLocalStorage();
     renderBooks("all");
     showBookAmount();
 }
 
 function showBookAmount() {
-    document.getElementById("bookAmount").innerText =
-        `The Collection · ${currentBooks.length} Books`;
+    document.getElementById("bookAmount").innerText = getTextForBookAmount();
 }
 
 function renderBooks(category) {
@@ -401,7 +401,7 @@ function pushBooksToHTML() {
 }
 
 function renderExistingComments(index) {
-    document.getElementById(`commentsWrapper-${index}`).innerHTML += "";
+    document.getElementById(`commentsWrapper-${index}`).innerHTML = "";
     let existingBookComments = currentBooks[index].comments;
     for (
         let commentIndex = 0;
@@ -420,15 +420,19 @@ function toggleCommentSection(index) {
 }
 
 function addComment(index) {
-    document.getElementById(`commentsWrapper-${index}`).innerHTML +=
-        getHTMLForNewComment(index);
+    if (document.getElementById(`commentInput-${index}`).value.trim() !== "") {
+        currentBooks[index].comments.push({
+            "name": "You",
+            "comment": document.getElementById(`commentInput-${index}`).value.trim()
+        })
+    }
     document.getElementById(`commentInput-${index}`).value = "";
+    renderExistingComments(index);
     countComments(index);
+    saveBooksToLocalStorage();
 }
 
 function countComments(index) {
-    currentBooks[index].comments.length =
-        currentBooks[index].comments.length + 1;
     document.getElementById(`commentCounter-${index}`).innerHTML =
         currentBooks[index].comments.length;
 }
@@ -446,6 +450,7 @@ function toggleLikeBook(index) {
         .getElementById(`likeButton-${index}`)
         .classList.toggle("liked-button");
     countLikes(index);
+    saveBooksToLocalStorage();
 }
 
 function countLikes(index) {
@@ -465,6 +470,7 @@ function countLikes(index) {
 function setFavorite(index) {
     const FAVORITE_BUTTON_REF = document.getElementById(`favoriteButton-${index}`);
     currentBooks[index].isFavorite = !currentBooks[index].isFavorite;
+    saveBooksToLocalStorage();
     if (currentBooks[index].isFavorite === true) {
         FAVORITE_BUTTON_REF.classList.add("favored-button");
     } else {
@@ -480,4 +486,16 @@ function chooseCategory(clickedButton, category) {
     });
     clickedButton.classList.add("active-button");
     renderBooks(category);
+}
+
+function saveBooksToLocalStorage() {
+    localStorage.setItem("books", JSON.stringify(books));  
+}
+
+function getBooksFromLocalStorage() {
+    const SAVED_BOOKS = localStorage.getItem("books");
+
+    if (SAVED_BOOKS !== null){
+        books = JSON.parse(SAVED_BOOKS);
+    }
 }

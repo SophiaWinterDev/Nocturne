@@ -37,7 +37,6 @@ function getHTMLForExistingComments(index, commentIndex) {
     <p><b>${currentBooks[index].comments[commentIndex].name}</b>:<br>${currentBooks[index].comments[commentIndex].comment}</p>`;
 }
 
-function getHTMLForNewComment(index) {
-    return `
-    <p><b>Guest</b>:<br>${document.getElementById(`commentInput-${index}`).value}</p>`;
+function getTextForBookAmount() {
+    return `The Collection · ${currentBooks.length} Books`;
 }
