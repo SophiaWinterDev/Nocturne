@@ -358,6 +358,33 @@ let books = [
             },
         ],
     },
+    {
+        "name": "Der Fluch von Raven's Run",
+        "author": "Kathryn S. Evermore",
+        "likes": 1248,
+        "liked": false,
+        "isFavorite": false,
+        "price": 24.99,
+        "publishedYear": 2026,
+        "genre": "Gothic Fantasy",
+        "comments": [
+            {
+                "name": "MoonlitPages",
+                "comment":
+                    "The gothic atmosphere was absolutely beautiful. A mysterious village, ghosts and an ancient curse? Exactly my kind of story!",
+            },
+            {
+                "name": "VelvetWhispers",
+                "comment":
+                    "I loved how the story connects the Victorian past with the present. The mystery kept me guessing until the end.",
+            },
+            {
+                "name": "NocturnalReader",
+                "comment":
+                    "The slow-burn romance and paranormal elements worked so well together. A haunting and atmospheric read!",
+            },
+        ],
+    },
 ];
 
 let currentBooks = [];
@@ -383,7 +410,11 @@ function renderBooks(category) {
 
 function pushBooksToArray(category) {
     for (let index = 0; index < books.length; index++) {
-        if (category === "all" || books[index].genre === category || (category === "favorites" && books[index].isFavorite)) {
+        if (
+            category === "all" ||
+            books[index].genre === category ||
+            (category === "favorites" && books[index].isFavorite)
+        ) {
             currentBooks.push(books[index]);
         }
     }
@@ -393,7 +424,9 @@ function pushBooksToHTML() {
     for (let index = 0; index < currentBooks.length; index++) {
         BOOK_SECTION_REF.innerHTML += getHTMLForBook(index);
         if (currentBooks[index].isFavorite) {
-            document.getElementById(`favoriteButton-${index}`).classList.add("favored-button");
+            document
+                .getElementById(`favoriteButton-${index}`)
+                .classList.add("favored-button");
         }
         checkIfLiked(index);
         renderExistingComments(index);
@@ -423,8 +456,10 @@ function addComment(index) {
     if (document.getElementById(`commentInput-${index}`).value.trim() !== "") {
         currentBooks[index].comments.push({
             "name": "You",
-            "comment": document.getElementById(`commentInput-${index}`).value.trim()
-        })
+            "comment": document
+                .getElementById(`commentInput-${index}`)
+                .value.trim(),
+        });
     }
     document.getElementById(`commentInput-${index}`).value = "";
     renderExistingComments(index);
@@ -468,7 +503,9 @@ function countLikes(index) {
 }
 
 function setFavorite(index) {
-    const FAVORITE_BUTTON_REF = document.getElementById(`favoriteButton-${index}`);
+    const FAVORITE_BUTTON_REF = document.getElementById(
+        `favoriteButton-${index}`,
+    );
     currentBooks[index].isFavorite = !currentBooks[index].isFavorite;
     saveBooksToLocalStorage();
     if (currentBooks[index].isFavorite === true) {
@@ -476,8 +513,14 @@ function setFavorite(index) {
     } else {
         FAVORITE_BUTTON_REF.classList.remove("favored-button");
     }
-    if (document.querySelector(".active-button").getAttribute("onclick").includes("favorites")) {
-            renderBooks("favorites");}
+    if (
+        document
+            .querySelector(".active-button")
+            .getAttribute("onclick")
+            .includes("favorites")
+    ) {
+        renderBooks("favorites");
+    }
 }
 
 function chooseCategory(clickedButton, category) {
@@ -489,13 +532,13 @@ function chooseCategory(clickedButton, category) {
 }
 
 function saveBooksToLocalStorage() {
-    localStorage.setItem("books", JSON.stringify(books));  
+    localStorage.setItem("books", JSON.stringify(books));
 }
 
 function getBooksFromLocalStorage() {
     const SAVED_BOOKS = localStorage.getItem("books");
 
-    if (SAVED_BOOKS !== null){
+    if (SAVED_BOOKS !== null) {
         books = JSON.parse(SAVED_BOOKS);
     }
 }
