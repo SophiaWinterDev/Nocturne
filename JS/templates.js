@@ -7,8 +7,8 @@ function getHTMLForBook(index) {
             <p class="book-genre">${currentBooks[index].genre} · ${currentBooks[index].publishedYear}</p>
             <h2>${currentBooks[index].name}</h2>
             <p class="book-author">${currentBooks[index].author}</p>
-            <h3 class="book-price">${currentBooks[index].price.toLocaleString("de-DE", { style: "currency", currency: "EUR" })}</h3>
         </div>
+        <h3 class="book-price">${currentBooks[index].price.toLocaleString("de-DE", { style: "currency", currency: "EUR" })}</h3>
         <hr />
         <div class="book-footer">
             <div class="likes-wrapper">
@@ -17,10 +17,10 @@ function getHTMLForBook(index) {
             </div>
             <div class="comments-wrapper">
                 <button class="comments-button" onclick="toggleCommentSection(${index})"></button>
-                <p class="book-comments">${currentBooks[index].comments.length}</p>
+                <p id="commentCounter-${index}" class="book-comments">${currentBooks[index].comments.length}</p>
             </div>
         </div>
-        <section id="commentSection-${index}" class="comment-section d-none">
+        <section id="commentSection-${index}" class="comment-section">
             <hr />
             <p>Comments:</p>
             <div id="commentsWrapper-${index}" class="comments"></div>
@@ -30,4 +30,14 @@ function getHTMLForBook(index) {
             </div>
         </section>
         </li>`;
+}
+
+function getHTMLForExistingComments(index, commentIndex) {
+    return `
+    <p><b>${currentBooks[index].comments[commentIndex].name}</b>:<br>${currentBooks[index].comments[commentIndex].comment}</p>`;
+}
+
+function getHTMLForNewComment(index) {
+    return `
+    <p><b>Guest</b>:<br>${document.getElementById(`commentInput-${index}`).value}</p>`;
 }
