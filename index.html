@@ -18,8 +18,8 @@
         <link rel="stylesheet" href="./style.css" />
         <link rel="stylesheet" href="./CSS/main.css" />
     </head>
-    <body onload="init()">
-        <header>
+    <body onload="init()" class="column center">
+        <header class="column center full-width">
             <h1>Nocturne</h1>
             <span
                 >───────── &nbsp;&nbsp;&nbsp;◇&nbsp;&nbsp;&nbsp; ─────────</span
@@ -27,55 +27,55 @@
             <p>A LIBRARY OF DARK AND BEAUTIFUL STORIES</p>
         </header>
         <hr />
-        <main>
-            <section class="category-section">
+        <main class="column full-width">
+            <section class="category-section column">
                 <p id="bookAmount"></p>
                 <div class="category-button-wrapper">
                     <button
                         id="categoryFavorites"
-                        class="category-button"
+                        class="category-button highlight-border"
                         onclick="chooseCategory(this, 'favorites')"
                     >
                         Favorites
                     </button>
                     <button
                         id="categoryAll"
-                        class="category-button active-button"
+                        class="category-button highlight-border active-button"
                         onclick="chooseCategory(this, 'all')"
                     >
                         All Books
                     </button>
                     <button
                         id="categoryUrbanFantasy"
-                        class="category-button"
+                        class="category-button highlight-border"
                         onclick="chooseCategory(this, 'Urban Fantasy')"
                     >
                         Urban Fantasy
                     </button>
                     <button
                         id="categoryGothicFantasy"
-                        class="category-button"
+                        class="category-button highlight-border"
                         onclick="chooseCategory(this, 'Gothic Fantasy')"
                     >
                         Gothic Fantasy
                     </button>
                     <button
                         id="categoryDarkFantasy"
-                        class="category-button"
+                        class="category-button highlight-border"
                         onclick="chooseCategory(this, 'Dark Fantasy')"
                     >
                         Dark Fantasy
                     </button>
                     <button
                         id="categoryRomantasy"
-                        class="category-button"
+                        class="category-button highlight-border"
                         onclick="chooseCategory(this, 'Romantasy')"
                     >
                         Romantasy
                     </button>
                     <button
                         id="categoryDarkRomance"
-                        class="category-button"
+                        class="category-button highlight-border"
                         onclick="chooseCategory(this, 'Dark Romance')"
                     >
                         Dark Romance
@@ -85,7 +85,7 @@
             <section id="bookSection" class="book-section"></section>
         </main>
         <hr />
-        <footer>
+        <footer class="column center full-width">
             <img src="./assets/icon/logo.png" alt="Nocturne Logo" />
             <p>Nocturne</p>
         </footer>
