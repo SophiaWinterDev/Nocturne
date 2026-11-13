@@ -9,8 +9,8 @@ function getHTMLForBook(index) {
             <p class="book-author">${currentBooks[index].author}</p>
         </div>
         <h3 class="book-price">${currentBooks[index].price.toLocaleString("de-DE", { style: "currency", currency: "EUR" })}</h3>
-        <span
-                >────────── &nbsp;&nbsp;&nbsp;◇&nbsp;&nbsp;&nbsp; ──────────</span
+        <div aria-hidden="true" class="divider"
+                >────────── &nbsp;&nbsp;&nbsp;◇&nbsp;&nbsp;&nbsp; ──────────</div
             >
         <div class="book-footer full-width">
             <div class="likes-wrapper center">
@@ -23,8 +23,8 @@ function getHTMLForBook(index) {
             </div>
         </div>
         <section id="commentSection-${index}" class="comment-section column full-width">
-            <span
-                >─────────────────────────</span
+            <div aria-hidden="true" class="divider"
+                >─────────────────────────</div
             >
             <p>Comments:</p>
             <div id="commentsWrapper-${index}" class="comments column"></div>

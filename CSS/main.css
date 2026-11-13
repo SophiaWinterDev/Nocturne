@@ -55,7 +55,7 @@ h1 {
 }
 
 header p,
-header span,
+header div,
 .category-button,
 .book-genre,
 .book-price {
@@ -67,7 +67,7 @@ header p {
     padding-top: 30px;
 }
 
-header span {
+header div {
     font-size: clamp(16px, 5vw, 40px);
 }
 
@@ -165,7 +165,7 @@ input::placeholder {
     padding: 10px 0;
 }
 
-.book span {
+.divider {
     color: var(--highlight-bg-color);
     text-align: center;
 }
