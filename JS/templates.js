@@ -9,7 +9,9 @@ function getHTMLForBook(index) {
             <p class="book-author">${currentBooks[index].author}</p>
         </div>
         <h3 class="book-price">${currentBooks[index].price.toLocaleString("de-DE", { style: "currency", currency: "EUR" })}</h3>
-        <hr class="full-width highlight-border" />
+        <span
+                >────────── &nbsp;&nbsp;&nbsp;◇&nbsp;&nbsp;&nbsp; ──────────</span
+            >
         <div class="book-footer full-width">
             <div class="likes-wrapper center">
                 <button id="likeButton-${index}" class="like-button" onclick="toggleLikeBook(${index})" aria-label="Like book"></button>
@@ -21,7 +23,9 @@ function getHTMLForBook(index) {
             </div>
         </div>
         <section id="commentSection-${index}" class="comment-section column full-width">
-            <hr class="full-width highlight-border" />
+            <span
+                >─────────────────────────</span
+            >
             <p>Comments:</p>
             <div id="commentsWrapper-${index}" class="comments column"></div>
             <div class="input-wrapper full-width">
@@ -39,4 +43,8 @@ function getHTMLForExistingComments(index, commentIndex) {
 
 function getTextForBookAmount() {
     return `The Collection · ${currentBooks.length} Books`;
+}
+
+function getHTMLForEmptySite() {
+    return "<p class='empty'><i>Even the darkest library has its empty shelves...</i></p>";
 }

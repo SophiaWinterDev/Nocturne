@@ -402,6 +402,7 @@ function renderBooks(category) {
     pushBooksToArray(category);
     pushBooksToHTML();
     showBookAmount();
+    checkIfEmpty();
 }
 
 function pushBooksToArray(category) {
@@ -439,6 +440,12 @@ function chooseCategory(clickedButton, category) {
 
 function showBookAmount() {
     document.getElementById("bookAmount").innerText = getTextForBookAmount();
+}
+
+function checkIfEmpty() {
+    if (currentBooks.length === 0) {
+        BOOK_SECTION_REF.innerHTML += getHTMLForEmptySite();
+    }
 }
 
 // #region Comments

@@ -8,3 +8,7 @@
     outline: 3px solid var(--main-text-color);
     outline-offset: 2px;
 }
+
+html {
+    font-size: 17px;
+}
