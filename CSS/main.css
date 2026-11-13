@@ -40,6 +40,7 @@ header,
 main,
 footer {
     padding: 40px 100px;
+    width: 100%;
 }
 
 h1,
@@ -50,7 +51,7 @@ footer > p {
 }
 
 h1 {
-    font-size: clamp(40px, 7vw, 96px);
+    font-size: clamp(26px, 7vw, 96px);
 }
 
 header p,
@@ -66,11 +67,10 @@ header p {
 }
 
 header span {
-    font-size: clamp(20px, 5vw, 40px);
+    font-size: clamp(16px, 5vw, 40px);
 }
 
 main {
-    width: 100%;
     gap: 40px;
 }
 
@@ -80,6 +80,7 @@ main {
 
 .category-button-wrapper {
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
 }
 
@@ -114,7 +115,6 @@ main {
     border: 1px solid var(--highlight-bg-color);
     border-radius: 10px;
     padding: 10px;
-    width: 350px;
     position: relative;
     justify-content: center;
     gap: 10px;
@@ -264,4 +264,60 @@ footer {
 
 footer img {
     width: 96px;
+}
+
+@media screen and (max-width: 480px) {
+    header,
+    main,
+    footer {
+        padding: 40px 16px;
+    }
+
+    h1,
+    footer > p {
+        letter-spacing: 10px;
+        margin-right: -10px;
+    }
+
+    footer img {
+        width: 72px;
+    }
+}
+
+@media screen and (max-width: 660px) {
+    .category-section {
+        align-items: center;
+    }
+
+    .category-button-wrapper {
+        justify-content: center;
+    }
+}
+
+@media screen and (min-width: 400px) {
+    .book {
+        width: 330px;
+    }
+}
+
+@media screen and (min-width: 481px) and (max-width: 1279px) {
+    header,
+    main,
+    footer {
+        padding: 40px 40px;
+    }
+
+    h1,
+    footer > p {
+        letter-spacing: 15px;
+        margin-right: -15px;
+    }
+}
+
+@media screen and (min-width: 1441px) {
+    header,
+    main,
+    footer {
+        padding: 40px max(100px, calc(50% - 720px));
+    }
 }

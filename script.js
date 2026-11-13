@@ -362,7 +362,7 @@ let books = [
         "name": "Der Fluch von Raven's Run",
         "author": "Kathryn S. Evermore",
         "likes": 1248,
-        "liked": false,
+        "liked": true,
         "isFavorite": false,
         "price": 24.99,
         "publishedYear": 2026,
@@ -394,10 +394,6 @@ function init() {
     getBooksFromLocalStorage();
     renderBooks("all");
     showBookAmount();
-}
-
-function showBookAmount() {
-    document.getElementById("bookAmount").innerText = getTextForBookAmount();
 }
 
 function renderBooks(category) {
@@ -433,6 +429,19 @@ function pushBooksToHTML() {
     }
 }
 
+function chooseCategory(clickedButton, category) {
+    document.querySelectorAll(".category-button").forEach((button) => {
+        button.classList.remove("active-button");
+    });
+    clickedButton.classList.add("active-button");
+    renderBooks(category);
+}
+
+function showBookAmount() {
+    document.getElementById("bookAmount").innerText = getTextForBookAmount();
+}
+
+// #region Comments
 function renderExistingComments(index) {
     document.getElementById(`commentsWrapper-${index}`).innerHTML = "";
     let existingBookComments = currentBooks[index].comments;
@@ -471,7 +480,9 @@ function countComments(index) {
     document.getElementById(`commentCounter-${index}`).innerHTML =
         currentBooks[index].comments.length;
 }
+// #endregion
 
+// #region Likes
 function checkIfLiked(index) {
     if (currentBooks[index].liked === true) {
         document
@@ -501,7 +512,9 @@ function countLikes(index) {
     document.getElementById(`likeCounter-${index}`).innerHTML =
         currentBooks[index].likes;
 }
+// #endregion
 
+// #region Favorites
 function setFavorite(index) {
     const FAVORITE_BUTTON_REF = document.getElementById(
         `favoriteButton-${index}`,
@@ -513,6 +526,10 @@ function setFavorite(index) {
     } else {
         FAVORITE_BUTTON_REF.classList.remove("favored-button");
     }
+    checkFavorites();
+}
+
+function checkFavorites() {
     if (
         document
             .querySelector(".active-button")
@@ -522,23 +539,17 @@ function setFavorite(index) {
         renderBooks("favorites");
     }
 }
+// #endregion
 
-function chooseCategory(clickedButton, category) {
-    document.querySelectorAll(".category-button").forEach((button) => {
-        button.classList.remove("active-button");
-    });
-    clickedButton.classList.add("active-button");
-    renderBooks(category);
-}
-
+// #region Local Storage
 function saveBooksToLocalStorage() {
     localStorage.setItem("books", JSON.stringify(books));
 }
 
 function getBooksFromLocalStorage() {
     const SAVED_BOOKS = localStorage.getItem("books");
-
     if (SAVED_BOOKS !== null) {
         books = JSON.parse(SAVED_BOOKS);
     }
 }
+// #endregion
