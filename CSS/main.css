@@ -116,6 +116,11 @@ main {
     padding: 50px;
 }
 
+ul {
+    list-style-type: none;
+    padding-inline-start: 0;
+}
+
 .book-section {
     display: flex;
     flex-wrap: wrap;
