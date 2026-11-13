@@ -303,6 +303,18 @@ footer img {
     footer img {
         width: 72px;
     }
+
+    .book {
+        width: 270px;
+    }
+
+    .divider {
+        font-size: 14px;
+    }
+
+    input {
+        width: 85%;
+    }
 }
 
 @media screen and (max-width: 660px) {
