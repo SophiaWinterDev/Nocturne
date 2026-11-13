@@ -3,3 +3,8 @@
     margin: 0;
     scroll-behavior: smooth;
 }
+
+*:focus-visible {
+    outline: 3px solid var(--main-text-color);
+    outline-offset: 2px;
+}
