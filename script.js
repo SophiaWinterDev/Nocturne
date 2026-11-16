@@ -14,6 +14,7 @@ function renderBooks(category) {
     pushBooksToHTML();
     showBookAmount();
     checkIfEmpty();
+    BOOK_SECTION_REF.innerHTML += getHTMLForAddButton();
 }
 
 function pushBooksToArray(category) {

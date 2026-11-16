@@ -277,6 +277,14 @@ input:focus {
     outline-offset: 0;
 }
 
+.add-button {
+    background-color: var(--secondary-bg-color);
+    background-image: url(../assets/icon/add-icon.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 0;
+}
+
 footer {
     gap: 20px;
     font-size: clamp(16px, 4vw, 20px);
@@ -287,6 +295,17 @@ footer img {
 }
 
 /* #region Media queries */
+@media screen and (max-width: 399px) {
+    .book {
+        width: 270px;
+    }
+
+    .add-button {
+        width: 268px;
+        height: 578px;
+    }
+}
+
 @media screen and (max-width: 480px) {
     header,
     main,
@@ -302,10 +321,6 @@ footer img {
 
     footer img {
         width: 72px;
-    }
-
-    .book {
-        width: 270px;
     }
 
     .divider {
@@ -330,6 +345,17 @@ footer img {
 @media screen and (min-width: 400px) {
     .book {
         width: 330px;
+    }
+
+    .add-button {
+        width: 328px;
+        height: 638px;
+    }
+}
+
+@media screen and (min-width: 481px) {
+    .add-button {
+    height: 643px;
     }
 }
 

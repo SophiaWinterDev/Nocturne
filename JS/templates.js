@@ -48,3 +48,10 @@ function getTextForBookAmount() {
 function getHTMLForEmptySite() {
     return "<p class='empty'><i>Even the darkest library has its empty shelves...</i></p>";
 }
+
+function getHTMLForAddButton() {
+    return `
+    <li>
+        <button class="book column highlight-border add-button"></button>
+    </li>`;
+}
