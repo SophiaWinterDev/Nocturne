@@ -13,7 +13,9 @@ function renderBooks(category) {
     pushBooksToArray(category);
     pushBooksToHTML();
     showBookAmount();
-    BOOK_SECTION_REF.innerHTML += getHTMLForAddButton();
+    if (category !== "favorites") {
+        BOOK_SECTION_REF.innerHTML += getHTMLForAddButton();
+    }
     checkIfEmpty();
 }
 
