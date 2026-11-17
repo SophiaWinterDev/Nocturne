@@ -20,15 +20,15 @@
         <link rel="stylesheet" href="./CSS/main.css" />
     </head>
     <body onload="init()" class="column center">
-        <header class="column center full-width">
+        <header class="column center full-width header">
             <h1>Nocturne</h1>
-            <div aria-hidden="true"
-                >───────── &nbsp;&nbsp;&nbsp;◇&nbsp;&nbsp;&nbsp; ─────────</div
-            >
+            <div aria-hidden="true">
+                ───────── &nbsp;&nbsp;&nbsp;◇&nbsp;&nbsp;&nbsp; ─────────
+            </div>
             <p>A LIBRARY OF DARK AND BEAUTIFUL STORIES</p>
         </header>
         <hr />
-        <main class="column full-width">
+        <main class="column full-width main">
             <section class="category-section column">
                 <p id="bookAmount"></p>
                 <div class="category-button-wrapper">
@@ -84,9 +84,73 @@
                 </div>
             </section>
             <ul id="bookSection" class="book-section"></ul>
+            <dialog id="dialog">
+                <header>
+                    <h3>Add a new book:</h3>
+                </header>
+                <main>
+                    <form class="column">
+                        <label for="genreSelection">Choose a genre:</label>
+                        <select
+                            name="genreSelection"
+                            id="genreSelection"
+                            class="highlight-border"
+                            required
+                        >
+                            <option value="Urban Fantasy">Urban Fantasy</option>
+                            <option value="Gothic Fantasy">
+                                Gothic Fantasy
+                            </option>
+                            <option value="Dark Fantasy">Dark Fantasy</option>
+                            <option value="Romantasy">Romantasy</option>
+                            <option value="Dark Romance">Dark Romance</option>
+                        </select>
+                        <label for="titleInput">Booktitle:</label>
+                        <input
+                            type="text"
+                            id="titleInput"
+                            name="titleInput"
+                            class="highlight-border"
+                            required
+                        />
+                        <label for="authorInput">Name of the author:</label>
+                        <input
+                            type="text"
+                            id="authorInput"
+                            name="authorInput"
+                            class="highlight-border"
+                            required
+                        />
+                        <label for="yearInput">Year of publication:</label>
+                        <input
+                            type="text"
+                            id="yearInput"
+                            name="yearInput"
+                            class="highlight-border"
+                            required
+                        />
+                        <label for="priceInput">Price:</label>
+                        <input
+                            type="number"
+                            id="priceInput"
+                            name="priceInput"
+                            step="0.01"
+                            min="0"
+                            class="highlight-border"
+                            required
+                        />
+                    </form>
+                </main>
+                <footer>
+                    <button type="button" onclick="closeDialog()">
+                        Cancel
+                    </button>
+                    <button type="submit">Add book</button>
+                </footer>
+            </dialog>
         </main>
         <hr />
-        <footer class="column center full-width">
+        <footer class="column center full-width footer">
             <img src="./assets/icon/logo.png" alt="Nocturne Logo" />
             <p>Nocturne</p>
         </footer>

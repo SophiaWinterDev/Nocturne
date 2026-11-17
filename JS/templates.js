@@ -52,6 +52,6 @@ function getHTMLForEmptySite() {
 function getHTMLForAddButton() {
     return `
     <li>
-        <button class="book column highlight-border add-button"></button>
+        <button class="book column highlight-border add-button" onclick="openDialog()"></button>
     </li>`;
 }

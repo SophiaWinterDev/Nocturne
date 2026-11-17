@@ -13,8 +13,8 @@ function renderBooks(category) {
     pushBooksToArray(category);
     pushBooksToHTML();
     showBookAmount();
-    checkIfEmpty();
     BOOK_SECTION_REF.innerHTML += getHTMLForAddButton();
+    checkIfEmpty();
 }
 
 function pushBooksToArray(category) {
@@ -56,6 +56,7 @@ function showBookAmount() {
 
 function checkIfEmpty() {
     if (currentBooks.length === 0) {
+        BOOK_SECTION_REF.innerHTML = "";
         BOOK_SECTION_REF.innerHTML += getHTMLForEmptySite();
     }
 }
@@ -170,5 +171,33 @@ function loadBooksFromLocalStorage() {
     if (SAVED_BOOKS !== null) {
         books = JSON.parse(SAVED_BOOKS);
     }
+}
+// #endregion
+
+// #region Dialog
+function openDialog() {
+    document.getElementById("dialog").showModal();
+    lockScroll();
+    document
+        .getElementById("dialog")
+        .addEventListener("close", unlockScroll, { once: true });
+}
+
+function closeDialog() {
+    document.getElementById("dialog").close();
+}
+
+function lockScroll() {
+    scrollPosition = window.scrollY;
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollPosition}px`;
+    document.body.style.width = "100%";
+}
+
+function unlockScroll() {
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.width = "";
+    window.scrollTo(0, scrollPosition);
 }
 // #endregion
