@@ -1,9 +1,10 @@
 let currentBooks = [];
+let currentCategory = "all";
 const BOOK_SECTION_REF = document.getElementById("bookSection");
 
 function init() {
     loadBooksFromLocalStorage();
-    renderBooks("all");
+    renderBooks(currentCategory);
     showBookAmount();
 }
 
@@ -49,6 +50,7 @@ function chooseCategory(clickedButton, category) {
         button.classList.remove("active-button");
     });
     clickedButton.classList.add("active-button");
+    currentCategory = category;
     renderBooks(category);
 }
 
@@ -152,12 +154,7 @@ function setFavorite(index) {
 }
 
 function checkFavorites() {
-    if (
-        document
-            .querySelector(".active-button")
-            .getAttribute("onclick")
-            .includes("favorites")
-    ) {
+    if (currentCategory === "favorites") {
         renderBooks("favorites");
     }
 }
@@ -201,5 +198,18 @@ function unlockScroll() {
     document.body.style.top = "";
     document.body.style.width = "";
     window.scrollTo(0, scrollPosition);
+}
+
+function addNewBook(event) {
+    event.preventDefault();
+    books.push(getNewBook());
+    saveBooksToLocalStorage();
+    renderBooks(currentCategory);
+    resetDialogInputs();
+    closeDialog();
+}
+
+function resetDialogInputs() {
+    document.getElementById("form").reset();
 }
 // #endregion

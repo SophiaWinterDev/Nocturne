@@ -55,3 +55,17 @@ function getHTMLForAddButton() {
         <button class="book column highlight-border add-button" onclick="openDialog()"></button>
     </li>`;
 }
+
+function getNewBook() {
+    return {
+        "name": document.getElementById("titleInput").value,
+        "author": document.getElementById("authorInput").value,
+        "likes": 0,
+        "liked": false,
+        "isFavorite": false,
+        "price": Number(document.getElementById("priceInput").value),
+        "publishedYear": Number(document.getElementById("yearInput").value),
+        "genre": document.getElementById("genreSelection").value,
+        "comments": [],
+    };
+}

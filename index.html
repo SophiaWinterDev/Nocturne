@@ -88,8 +88,8 @@
                 <header>
                     <h3>Add a new book:</h3>
                 </header>
-                <main>
-                    <form class="column">
+                <form id="form" class="column" onsubmit="addNewBook(event)">
+                    <main class="column">
                         <label for="genreSelection">Choose a genre:</label>
                         <select
                             name="genreSelection"
@@ -97,6 +97,7 @@
                             class="highlight-border"
                             required
                         >
+                            <option value="" disabled selected></option>
                             <option value="Urban Fantasy">Urban Fantasy</option>
                             <option value="Gothic Fantasy">
                                 Gothic Fantasy
@@ -139,14 +140,14 @@
                             class="highlight-border"
                             required
                         />
-                    </form>
-                </main>
-                <footer>
-                    <button type="button" onclick="closeDialog()">
-                        Cancel
-                    </button>
-                    <button type="submit">Add book</button>
-                </footer>
+                    </main>
+                    <footer>
+                        <button type="button" onclick="closeDialog()">
+                            Cancel
+                        </button>
+                        <button type="submit">Add book</button>
+                    </footer>
+                </form>
             </dialog>
         </main>
         <hr />
