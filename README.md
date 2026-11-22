@@ -1,6 +1,6 @@
 # Nocturne
 
-A library of dark and beautiful stories.
+A curated digital library for dark and beautiful stories, allowing users to browse, add, and manage their collection of books.
 
 ## Table of Contents
 
@@ -89,4 +89,4 @@ Nocturne/
 
 ## License
 
-This is a practice project created during my vocational retraining in application development. No license has been added.
+This is a practice project created during my vocational retraining in application development.
