@@ -1,6 +1,6 @@
-# Nocturne
+<img src="docs/header.png" alt="Nocturne — A library of dark and beautiful stories">
 
-A curated digital library for dark and beautiful stories, allowing users to browse, add, and manage their collection of books.
+A curated digital library where you can browse dark fiction, save favorites, and add books and genres of your own.
 
 ## Table of Contents
 
@@ -80,7 +80,7 @@ Nocturne/
 │   └── img/            # Book cover image
 ├── CSS/                # Fonts, colors, and layout styles
 ├── JS/                 # Sample book data and HTML templates
-├── docs/screenshots/   # Images used in this README
+├── docs/                # README banner and screenshots
 ├── index.html          # Page structure
 ├── script.js           # App behavior and local storage
 ├── style.css           # Base styles
