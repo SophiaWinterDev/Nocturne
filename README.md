@@ -89,4 +89,4 @@ Nocturne/
 
 ## License
 
-This is a practice project created during my vocational retraining in application development.
+This project began as a bookstore assignment during my vocational retraining at Developer Akademie. I later expanded it with features of my own.
