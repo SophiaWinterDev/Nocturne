@@ -31,64 +31,23 @@
         <main class="column full-width main">
             <section class="category-section column">
                 <p id="bookAmount"></p>
-                <div class="category-button-wrapper">
-                    <button
-                        id="categoryFavorites"
-                        class="category-button"
-                        onclick="chooseCategory(this, 'favorites')"
-                    >
-                        Favorites
-                    </button>
-                    <button
-                        id="categoryAll"
-                        class="category-button active-button"
-                        onclick="chooseCategory(this, 'all')"
-                    >
-                        All Books
-                    </button>
-                    <button
-                        id="categoryUrbanFantasy"
-                        class="category-button"
-                        onclick="chooseCategory(this, 'Urban Fantasy')"
-                    >
-                        Urban Fantasy
-                    </button>
-                    <button
-                        id="categoryGothicFantasy"
-                        class="category-button"
-                        onclick="chooseCategory(this, 'Gothic Fantasy')"
-                    >
-                        Gothic Fantasy
-                    </button>
-                    <button
-                        id="categoryDarkFantasy"
-                        class="category-button"
-                        onclick="chooseCategory(this, 'Dark Fantasy')"
-                    >
-                        Dark Fantasy
-                    </button>
-                    <button
-                        id="categoryRomantasy"
-                        class="category-button"
-                        onclick="chooseCategory(this, 'Romantasy')"
-                    >
-                        Romantasy
-                    </button>
-                    <button
-                        id="categoryDarkRomance"
-                        class="category-button"
-                        onclick="chooseCategory(this, 'Dark Romance')"
-                    >
-                        Dark Romance
-                    </button>
-                </div>
+                <ul
+                    id="categoryButtonWrapper"
+                    class="category-button-wrapper"
+                ></ul>
             </section>
+            <div id="emptyShelf"></div>
             <ul id="bookSection" class="book-section"></ul>
             <dialog id="dialog">
                 <header>
                     <h3>Add a new book:</h3>
                 </header>
-                <form id="form" class="column" onsubmit="addNewBook(event)">
+                <form
+                    id="form"
+                    class="column"
+                    onsubmit="addNewBook(event)"
+                    autocomplete="off"
+                >
                     <main class="column">
                         <label for="genreSelection">Choose a genre:</label>
                         <select
@@ -146,6 +105,34 @@
                             Cancel
                         </button>
                         <button type="submit">Add book</button>
+                    </footer>
+                </form>
+            </dialog>
+            <dialog id="genreDialog">
+                <header>
+                    <h3>Add a new genre:</h3>
+                </header>
+                <form
+                    id="genreForm"
+                    class="column genre-form"
+                    onsubmit="addGenre(event)"
+                    autocomplete="off"
+                >
+                    <main class="column">
+                        <label for="newGenreInput">Genre name:</label>
+                        <input
+                            type="text"
+                            id="newGenreInput"
+                            class="highlight-border"
+                            required
+                        />
+                        <p id="genreError" class="genre-error"></p>
+                    </main>
+                    <footer>
+                        <button type="button" onclick="closeGenreDialog()">
+                            Cancel
+                        </button>
+                        <button type="submit">Add genre</button>
                     </footer>
                 </form>
             </dialog>

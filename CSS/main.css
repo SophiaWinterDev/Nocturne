@@ -307,6 +307,11 @@ form {
     width: 100%;
 }
 
+.genre-form {
+    height: 150px;
+    justify-content: space-between;
+}
+
 dialog {
     margin: auto;
     background-color: var(--secondary-bg-color);
@@ -317,6 +322,7 @@ dialog {
 
 dialog[open] {
     width: 350px;
+    min-height: 250px;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -346,6 +352,10 @@ dialog footer {
     display: flex;
     justify-content: space-evenly;
     gap: 10px;
+}
+
+.genre-error {
+    color: var(--secondary-text-color);
 }
 
 /* #region Media queries */

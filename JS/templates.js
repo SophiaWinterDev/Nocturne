@@ -69,3 +69,44 @@ function getNewBook() {
         "comments": [],
     };
 }
+
+function getHTMLForDefaultCategories() {
+    return `
+    <li>
+        <button class="category-button ${currentCategory === "favorites" ? "active-button" : ""}"
+            onclick="chooseCategory('favorites')">
+            Favorites
+        </button>
+    </li>
+    <li>
+        <button class="category-button ${currentCategory === "all" ? "active-button" : ""}"
+            onclick="chooseCategory('all')">
+            All Books
+        </button>
+    </li>
+    `;
+}
+
+function getHTMLForGenre(index) {
+    return `
+    <li>
+        <button class="category-button ${currentCategory === genres[index] ? "active-button" : ""}"
+            onclick="chooseCategory(genres[${index}])">
+            ${genres[index]}
+        </button>
+    </li>
+    `;
+}
+
+function getHTMLForAddGenreButton() {
+    return `
+    <li>
+        <button
+                type="button"
+                class="category-button"
+                onclick="openGenreDialog()"
+            >
+                + Add Genre
+        </button>
+    </li>`;
+}

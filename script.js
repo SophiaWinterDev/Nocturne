@@ -1,23 +1,35 @@
+let genres = [
+    "Urban Fantasy",
+    "Gothic Fantasy",
+    "Dark Fantasy",
+    "Romantasy",
+    "Dark Romance",
+];
+
 let currentBooks = [];
 let currentCategory = "all";
 const BOOK_SECTION_REF = document.getElementById("bookSection");
 
 function init() {
     loadBooksFromLocalStorage();
+    loadGenresFromLocalStorage();
+    renderGenres();
+    renderGenreOptions();
     renderBooks(currentCategory);
     showBookAmount();
 }
 
 function renderBooks(category) {
     BOOK_SECTION_REF.innerHTML = "";
+    document.getElementById("emptyShelf").innerHTML = "";
     currentBooks = [];
     pushBooksToArray(category);
     pushBooksToHTML();
     showBookAmount();
+    checkIfEmpty();
     if (category !== "favorites") {
         BOOK_SECTION_REF.innerHTML += getHTMLForAddButton();
     }
-    checkIfEmpty();
 }
 
 function pushBooksToArray(category) {
@@ -45,15 +57,6 @@ function pushBooksToHTML() {
     }
 }
 
-function chooseCategory(clickedButton, category) {
-    document.querySelectorAll(".category-button").forEach((button) => {
-        button.classList.remove("active-button");
-    });
-    clickedButton.classList.add("active-button");
-    currentCategory = category;
-    renderBooks(category);
-}
-
 function showBookAmount() {
     document.getElementById("bookAmount").innerText = getTextForBookAmount();
 }
@@ -61,9 +64,61 @@ function showBookAmount() {
 function checkIfEmpty() {
     if (currentBooks.length === 0) {
         BOOK_SECTION_REF.innerHTML = "";
-        BOOK_SECTION_REF.innerHTML += getHTMLForEmptySite();
+        document.getElementById("emptyShelf").innerHTML = getHTMLForEmptySite();
     }
 }
+
+// #region Categories/Genres
+function chooseCategory(category) {
+    currentCategory = category;
+    renderGenres();
+    renderBooks(category);
+}
+
+function renderGenres() {
+    const CATEGORY_BUTTON_WRAPPER_REF = document.getElementById(
+        "categoryButtonWrapper",
+    );
+    CATEGORY_BUTTON_WRAPPER_REF.innerHTML = getHTMLForDefaultCategories();
+    for (let index = 0; index < genres.length; index++) {
+        CATEGORY_BUTTON_WRAPPER_REF.innerHTML += getHTMLForGenre(index);
+    }
+    CATEGORY_BUTTON_WRAPPER_REF.innerHTML += getHTMLForAddGenreButton();
+}
+
+function addGenre(event) {
+    event.preventDefault();
+    let newGenre = document.getElementById("newGenreInput").value.trim();
+    if (checkIfGenreExists(newGenre)) {
+        document.getElementById("genreError").innerText =
+            "This genre already exists.";
+        return;
+    }
+    genres.push(newGenre);
+    saveGenresToLocalStorage();
+    renderGenres();
+    renderGenreOptions();
+    closeGenreDialog();
+}
+
+function renderGenreOptions() {
+    const SELECT_REF = document.getElementById("genreSelection");
+    SELECT_REF.innerHTML = '<option value="" disabled selected></option>';
+
+    for (let index = 0; index < genres.length; index++) {
+        SELECT_REF.innerHTML += `<option value="${genres[index]}">${genres[index]}</option>`;
+    }
+}
+
+function checkIfGenreExists(newGenre) {
+    for (let index = 0; index < genres.length; index++) {
+        if (genres[index].toLowerCase() === newGenre.toLowerCase()) {
+            return true;
+        }
+    }
+    return false;
+}
+// #endregion
 
 // #region Comments
 function renderExistingComments(index) {
@@ -171,9 +226,20 @@ function loadBooksFromLocalStorage() {
         books = JSON.parse(SAVED_BOOKS);
     }
 }
+
+function saveGenresToLocalStorage() {
+    localStorage.setItem("genres", JSON.stringify(genres));
+}
+
+function loadGenresFromLocalStorage() {
+    const SAVED_GENRES = localStorage.getItem("genres");
+    if (SAVED_GENRES !== null) {
+        genres = JSON.parse(SAVED_GENRES);
+    }
+}
 // #endregion
 
-// #region Dialog
+// #region Dialog Books
 function openDialog() {
     document.getElementById("dialog").showModal();
     lockScroll();
@@ -211,5 +277,21 @@ function addNewBook(event) {
 
 function resetDialogInputs() {
     document.getElementById("form").reset();
+}
+// #endregion
+
+// #region Dialog Genres
+function openGenreDialog() {
+    document.getElementById("genreDialog").showModal();
+    lockScroll();
+    document
+        .getElementById("genreDialog")
+        .addEventListener("close", unlockScroll, { once: true });
+    document.getElementById("genreError").innerText = "Enter a genre.";
+}
+
+function closeGenreDialog() {
+    document.getElementById("genreDialog").close();
+    document.getElementById("genreForm").reset();
 }
 // #endregion
