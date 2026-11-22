@@ -80,7 +80,7 @@ Nocturne/
 │   └── img/            # Book cover image
 ├── CSS/                # Fonts, colors, and layout styles
 ├── JS/                 # Sample book data and HTML templates
-├── docs/                # README banner and screenshots
+├── docs/               # README banner and screenshots
 ├── index.html          # Page structure
 ├── script.js           # App behavior and local storage
 ├── style.css           # Base styles
